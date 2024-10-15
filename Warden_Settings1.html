@@ -291,7 +291,7 @@
     
         async function getEvery(students) {
             try {
-                const response = await fetch('http://localhost:5000/yps', {
+                const response = await fetch('https://kasc-3.onrender.com/yps', {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -307,7 +307,7 @@
     
         async function Access(regNo, status) {
             try {
-                const response = await fetch('http://localhost:5000/sAccess', {
+                const response = await fetch(https://kasc-3.onrender.com/sAccess', {
                     method: 'POST',
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -354,7 +354,7 @@
         // Example fetch to get the students
         async function fetchStudents() {
             try {
-                const response = await fetch('http://localhost:5000/students', {
+                const response = await fetch('https://kasc-3.onrender.com/students', {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${token}`,
