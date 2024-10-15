@@ -864,34 +864,32 @@ app.delete('/students/delete', async (req, res) => {
 
 
 
-
 async function callApi() {
-   
     const now = new Date();
+    const istOffset = 5.5 * 60 * 60 * 1000; // IST is UTC + 5:30
+    const istDate = new Date(now.getTime() + istOffset);
 
-    const hours = now.getHours().toString().padStart(2, '0');  
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0'); 
+    const hours = istDate.getUTCHours().toString().padStart(2, '0');  
+    const minutes = istDate.getUTCMinutes().toString().padStart(2, '0');
+    const seconds = istDate.getUTCSeconds().toString().padStart(2, '0');
 
+    if ((hours == 9 && minutes == 0) || (hours == 13 && minutes == 0) || (hours == 16 && minutes == 0)) {
+        let response1 = await Smodel.find({});
+        for (let i = 0; i < response1.length; i++) {
+            response1[i].status = "on";
+            await response1[i].save();
+        }
+    }
 
-    if(hours==9 && minutes==0 || hours==13 && minutes==0 || hours==20 && minutes==2 ){
-    let response1 = await Smodel.find({});
-    for (let i = 0; i < response1.length; i++) {
-        response1[i].status = "on";
-        await response1[i].save();
+    if ((hours == 9 && minutes == 50) || (hours == 14 && minutes == 0) || (hours == 20 && minutes == 2)) {
+        let response2 = await Smodel.find({});
+        for (let i = 0; i < response2.length; i++) {
+            response2[i].status = "off";
+            await response2[i].save();
+        }
     }
 }
-   if(hours==9 && minutes==50 || hours==14 && minutes==0 || hours==20 && minutes==0){
-    let response2 = await Smodel.find({});
-    for (let i = 0; i < response2.length; i++) {
-        response2[i].status = "off";
-        await response2[i].save();
-    }
-}
-       
-       
-   
-}
+
 
 
 
