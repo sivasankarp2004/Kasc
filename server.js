@@ -873,7 +873,7 @@ async function callApi() {
     const minutes = istDate.getUTCMinutes().toString().padStart(2, '0');
     const seconds = istDate.getUTCSeconds().toString().padStart(2, '0');
 
-    if ((hours == 9 && minutes == 0) || (hours == 13 && minutes == 0) || (hours == 16 && minutes == 6)) {
+    if ((hours == 9 && minutes == 0) || (hours == 13 && minutes == 0) || (hours == 20 && minutes == 12)) {
         let response1 = await Smodel.find({});
         for (let i = 0; i < response1.length; i++) {
             response1[i].status = "on";
@@ -881,7 +881,7 @@ async function callApi() {
         }
     }
 
-    if ((hours == 9 && minutes == 50) || (hours == 14 && minutes == 0) || (hours == 20 && minutes == 8)) {
+    if ((hours == 9 && minutes == 50) || (hours == 14 && minutes == 0) || (hours == 20 && minutes == 14)) {
         let response2 = await Smodel.find({});
         for (let i = 0; i < response2.length; i++) {
             response2[i].status = "off";
